@@ -81,7 +81,6 @@ class AccountController extends Controller
         $data['password'] = bcrypt($request->password);
 
         if ($acc = Customer::create($data)) {
-            Mail::to($acc->email)->send(new VerifyAccount($acc));
             return redirect()->route('account.login')->with('OKe','Register succsessfully, please check your email to verify account');
         }
 
